@@ -16,7 +16,7 @@ LoginAction
     }
 
     handleLogin(){
-        axios.get('',{
+        axios.get('http://e498b9aebee0.ngrok.io/user/login/',{
             params:{
                 username:this.state.username,
                 password:this.state.password
@@ -59,7 +59,7 @@ LoginAction
 
                 <TouchableOpacity style={styles.button} onPress={()=>{this.handleLogin()}}><Text style={styles.title}>Login</Text></TouchableOpacity>
 
-                <TouchableOpacity style={styles.button} onPress={this.props.navigation.navigate("Registrasi")}><Text style={styles.title}>Registrasi</Text></TouchableOpacity>
+                {/* <TouchableOpacity style={styles.button} onPress={this.props.navigation.navigate("Registrasi")}><Text style={styles.title}>Registrasi</Text></TouchableOpacity> */}
             </View>
         )
     }

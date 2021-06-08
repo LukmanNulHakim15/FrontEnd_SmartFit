@@ -1,7 +1,8 @@
 const { combineReducers } = require("redux");
 
 const initialGlobalReducer = {
-    isLogin:false
+    isLogin:false,
+    dataUSer:{}
 }
 
 function LoginReducer (state=initialGlobalReducer,action){
