@@ -19,16 +19,16 @@ import ImagePicker from 'react-native-image-picker';
         super(props);
         this.state={
             avatarSource:null,
-             nama:"",
-             tempat:"",
-             ttl:"",
-             tinggiBadan:"",
-             beratBadanAwal:"",
-             hp:"",
-             email:"",
-             username:"",
-             password:"",
-             image:null,
+            //  nama:"",
+            //  tempat:"",
+            //  ttl:"",
+            //  tinggiBadan:"",
+            //  beratBadanAwal:"",
+            //  hp:"",
+            //  email:"",
+            //  username:"",
+            //  password:"",
+            //  image:null,
         }
     }
 
