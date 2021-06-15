@@ -1,97 +1,73 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TextInput, ScrollView, Platform, Button, Image, FlatList, TouchableOpacity, Dimensions} from 'react-native'
 import { connect } from 'react-redux'
-import ImagePicker from 'react-native-image-picker';
+//import ImagePicker from 'react-native-image-picker';
 // import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-// import * as ImagePicker from 'expo-image-picker';
+ import * as ImagePicker from 'expo-image-picker';
+import axios from 'axios';
 // import { Picker } from '@react-native-picker/picker';
 // import {ActionSheet, Root} from "native-base";
 
-    const options ={
-        title: 'my pic app',
-        takePhotoButtonTitle: 'Take Photo with Your Camera',
-        chooseFromLibraryButtonTitle: 'choose photo from library',
-
-    }
+   
  class Registrasi extends Component  {
     
     constructor (props){
         super(props);
         this.state={
-            avatarSource:null,
-            //  nama:"",
-            //  tempat:"",
-            //  ttl:"",
-            //  tinggiBadan:"",
-            //  beratBadanAwal:"",
-            //  hp:"",
-            //  email:"",
-            //  username:"",
-            //  password:"",
-            //  image:null,
+             nama:"",
+             tempat:"",
+             ttl:"",
+             tinggiBadan:"",
+             beratBadanAwal:"",
+             hp:"",
+             email:"",
+             username:"",
+             password:"",
+            //  image:"https://www.dumetschool.com/images/fck/indah_columns_08_13_2016_01.png",
         }
     }
 
     // componentDidMount(){
-    //     this.getPermission()
+    //   // this.getPerission();
     // }
 
-    // async getPermission(){
-    //     if (Platform.OS !== 'web') {
-    //         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    //         console.log(status)
-    //         if (status !== 'granted') {
-    //           alert('Sorry, we need camera roll permissions to make this work!');
-    //         }
-    //       }
+    simpanData () {
+      axios.post('http://9850a83eca96.ngrok.io/user/AddUser/', this.state)
+      .then((response)=>{
+         alert(response.data)
+         this.props.navigation.navigate('Login')
+      })
+      .catch((error)=> {
+        console.log ("Error woy" + error)
+      })
+    }
+
+    // async getPerission () {
+    //   if (Platform.OS !== 'web') {
+    //     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    //     console.log(status)
+    //     if (status !== 'granted') {
+    //       alert('Sorry, we need camera roll permissions to make this work!');
+    //     }
+    //   }
     // }
 
     // async pickImage(){
-    //     let result = await ImagePicker.launchImageLibraryAsync({
-    //         mediaTypes: ImagePicker.MediaTypeOptions.All,
-    //         allowsEditing: true,
-    //         aspect: [4, 3],
-    //         quality: 1,
-    //       });
-      
-    //       console.log(result);
-      
-    //       if (!result.cancelled) {
-    //           console.log(result.uri)
-    //        this.setState({image:result.uri})
-    //       }
+    //   let result = await ImagePicker.launchImageLibraryAsync({
+    //     mediaTypes: ImagePicker.MediaTypeOptions.All,
+    //     allowsEditing: true,
+    //     aspect: [4, 3],
+    //     quality: 1,
+    //   });
+  
+    //   console.log(result);
+  
+    //   if (!result.cancelled) {
+    //     this.setState({image:result.uri})
+    //   }
     // }
-
-   
-    myfun=()=>{
-        //alert('clicked');
-      
-        ImagePicker.showImagePicker(options, (response) => {
-          console.log('Response = ', response);
-      
-          if (response.didCancel) {
-            console.log('User cancelled image picker');
-          }
-          else if (response.error) {
-            console.log('Image Picker Error: ', response.error);
-          }
-      
-          else {
-            let source = { uri: response.uri };
-      
-            // You can also display the image using data:
-            // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-      
-            this.setState({
-              avatarSource: source,
-             // pic:response.data
-            });
-          }
-        });
-      }
-
+    
     render() {
-      
         return (
            
             <ScrollView> 
@@ -158,14 +134,14 @@ import ImagePicker from 'react-native-image-picker';
                 placeholder="Tempat"
                 />
 
-                <Text> Gambar </Text>
-                <TouchableOpacity style={{backgroundColor:'green', margin:10,padding: 10}} onPress={this.myfun}>
-                    <Text style={{backgroundColor:'#fff'}}> Select Image</Text>
-                </TouchableOpacity>
-                
+                <TouchableOpacity style={styles.button} onPress={()=>{this.simpanData()}}><Text>Submit</Text></TouchableOpacity>
+               
+                  {/* <Button title="Pick an image from camera roll" onPress={()=>{this.pickImage()}} />
+                  <Text> </Text>
+                  <Image source={{ uri: this.state.image }} style={{ width: 200, height: 200, alignSelf:'center' }} />
+                  <TouchableOpacity style={styles.button} onPress={()=>{}}><Text style={styles.title}>Submit</Text></TouchableOpacity> */}
 
-                {/* <Button title="Pick an image from camera roll" onPress={()=>{this.pickImage}} />
-                <Image source={{ uri: this.state.image }} style={{ width: 200, height: 200 }} /> */}
+               
 
             </ScrollView>
           
